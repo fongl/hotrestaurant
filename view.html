@@ -11,8 +11,8 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel=“stylesheet” href=“https://fonts.googleapis.com/css?family=Baloo+Paaji|Fredoka+One”>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel=“stylesheet” href=“https://fonts.googleapis.com/css?family=Baloo+Paaji|Fredoka+One”></link>
+    <link rel="stylesheet" type="text/css" href="assets/style.css"></link>
 </head>
 
 <body>
@@ -40,19 +40,25 @@
                     <div class='panel-title'>
                         Current Reservations
                     </div>
-                </div> 
+                </div>
+                <div class="panel-body">
+
+                          <div id="stats">
+                          </div>
+                        
+                      </div>
+            </div>
+            <!--
+                <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class='panel-title'>
+                        Waitlist
+                    </div>
+                </div>
                 <div id="searchBar" class='panel-body'>
                 </div>
             </div>
-            <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class='panel-title'>
-                            Waitlist
-                        </div>
-                    </div> 
-                    <div id="searchBar" class='panel-body'>
-                    </div>
-                </div>
+            -->
         </div>
 
         <div class="row">
@@ -63,6 +69,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $.get("/api/", function (data) {
+                console.log(data);
+                for(var i = 0; i < data.length; i++)
+                {
+                    var newDiv = $('<div>');
+                        newDiv.addClass('well');
+                    newDiv.append("<h3><strong>Name:</strong><span>"+data[i].name+"</span></h3>");
+                    newDiv.append("<h3><strong>Phone:</strong><span>"+data[i].phone+"</span></h3>");
+                    newDiv.append("<h3><strong>Email:</strong><span>"+data[i].email+"</span></h3>");
+                    newDiv.appendTo($('#stats'));
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

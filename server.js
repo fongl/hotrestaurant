@@ -8,7 +8,7 @@ var PORT = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static('/assets'));
+app.use(express.static(__dirname));
 
 var tables = [
 ];
@@ -24,7 +24,6 @@ app.get("/reserve", function(req, res) {
 // Get all characters
 app.get("/view", function(req, res) {
     res.sendFile(path.join(__dirname, "view.html"));
-
 });
 
 app.get("/api", function(req, res) {
@@ -36,7 +35,6 @@ app.post("/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
   var newTable = req.body;
-  console.log(newTable);
   tables.push(newTable);
   res.json(newTable);
 });
