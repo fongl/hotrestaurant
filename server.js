@@ -24,13 +24,11 @@ app.get("/reserve", function(req, res) {
 // Get all characters
 app.get("/view", function(req, res) {
     res.sendFile(path.join(__dirname, "view.html"));
+
 });
 
 app.get("/api", function(req, res) {
-    for (var i = 0; i < tables.length; i++) {
-      console.log(tables[i]);   
-      res.json(tables);
-    }
+    res.json(tables);
 });
 
 // Create New Characters - takes in JSON input
